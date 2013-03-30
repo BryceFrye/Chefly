@@ -1,4 +1,9 @@
 Chefly::Application.routes.draw do
+  root to: 'pages#home'
+  
+  resources :recipes
+  
+  get 'recipes/search/:ingredient' => 'recipes#search'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

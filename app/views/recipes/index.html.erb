@@ -1,0 +1,12 @@
+<div class="left_container">
+	<h1>Search By Ingredient</h1>
+	<input id="search_ingredient_input"/><button id="search_by_ingredients">Search</button>
+	<div id="recipe_search_results"></div>
+</div>
+
+<div class="right_container">
+	<h1>Recently Added Recipes</h1>
+	<% @recipes.each do |recipe| %>
+		<li><%= link_to recipe.name, recipe_path(recipe) %></li>
+	<% end %>
+</div>
