@@ -1,29 +1,25 @@
 <h1>Add A Recipe</h1>
 <%= form_for @recipe do |f| %>
 		
-		<div class="left_container">
-			<%= f.label :name %><br />
-			<%= f.text_field :name %><br />
+	<div class="left_container">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %><br />
 			
-			<%= f.fields_for :ingredients do |builder| %>
-			  <%= builder.label :ingredients %><br />
-				<%= builder.text_field :ingredient %><br />
-			<% end %>
-			
-			<%#= f.fields_for @inclusion do |builder| %>
-				<%#= render partial: 'ingredient_fields', locals: {  f: builder } %>
-			<%# end %>
-			<p><%#= link_to_add_ingredients "Add Ingredient", f, :ingredients %></p>
-		</div>
+		<%= f.label :ingredients %><br />
+		<%= f.fields_for :ingredients do |builder| %>
+		  <%= render 'ingredient_fields', f: builder %>
+		<% end %>
+		<p><%= link_to_add_ingredients "Add Ingredient", f, :ingredients %></p>
+	</div>
 		
-		<div class="right_container">
-			<%= f.label :description %><br />
-			<%= f.text_area :description %><br />
+	<div class="right_container">
+		<%= f.label :description %><br />
+		<%= f.text_area :description %><br />
 	
-			<%= f.label :instructions %><br />
-			<%= f.text_area :instructions %><br />
+		<%= f.label :instructions %><br />
+		<%= f.text_area :instructions %><br />
 			
-			<%= f.submit "Submit" %>
-		</div>
+		<%= f.submit "Submit" %>
+	</div>
 
 <% end %>
