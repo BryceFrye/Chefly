@@ -4,5 +4,9 @@
 <hr />
 <p>Ingredients:</p>
 <% @recipe.ingredients.each do |ingredient| %>
-	<li><%= ingredient.name %></li>
+	<li>
+		<% @inclusion = Inclusion.where(recipe_id: @recipe.id, 
+																		ingredient_id: ingredient.id).first %>
+		<%= ingredient.name %> - <%= @inclusion.amount %>
+	</li>
 <% end %>

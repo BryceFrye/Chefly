@@ -1,6 +1,6 @@
 class Ingredient < ActiveRecord::Base
   attr_accessible :name
-  attr_accessor :ingredient
+  attr_accessor :ingredient, :amount
   
   before_save { |ingredient| ingredient.name = ingredient.name.downcase }
   
