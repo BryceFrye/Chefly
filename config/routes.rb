@@ -1,9 +1,18 @@
 Chefly::Application.routes.draw do
+  devise_for :users
+
   root to: 'pages#home'
   
   resources :recipes
   
   get 'recipes/search/:ingredient' => 'recipes#search'
+  
+  devise_scope :user do
+    get "signin", :to => "devise/sessions#new"
+    get "signup", :to => "devise/registrations#new"
+    get "signout", :to => "devise/sessions#destroy"
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

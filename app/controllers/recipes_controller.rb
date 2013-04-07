@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   
   def new
     @recipe = Recipe.new
@@ -10,21 +11,11 @@ class RecipesController < ApplicationController
                          description: params[:recipe][:description],
                          instructions: params[:recipe][:instructions])
     if @recipe.save
-      params[:recipe][:ingredients_attributes].each do |key, value|
-        name = value[:ingredient].downcase
-        amount = value[:amount]
-        next if name.blank?
-        @ingredient = Ingredient.find_by_name(name)
-        unless @ingredient
-          @ingredient = @recipe.ingredients.build(name: name)
-          redirect_to :new unless @ingredient.save
-        end
-        @inclusion = Inclusion.new(recipe_id: @recipe.id,
-                                   ingredient_id: @ingredient.id,
-                                   amount: amount)
-        redirect_to :new unless @inclusion.save
+      if Ingredient.create_or_find(params, @recipe)
+        redirect_to @recipe
+      else
+        render :new
       end
-      redirect_to @recipe
     else
       render :new
     end

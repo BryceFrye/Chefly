@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+nav{
+	text-align: right;
+}
+
+nav a{
+	margin: 0 10px;
+}
+
 #main_container{
 	padding: 40px;
 }

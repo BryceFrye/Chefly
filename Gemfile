@@ -24,6 +24,7 @@ end
 
 gem 'jquery-rails', '2.0.2'
 gem 'client_side_validations'
+gem 'devise'
 
 group :test do
   gem 'capybara', '1.1.2'
