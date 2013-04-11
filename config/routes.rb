@@ -6,6 +6,7 @@ Chefly::Application.routes.draw do
   resources :recipes
   
   get 'recipes/search/:ingredient' => 'recipes#search'
+  get 'recipes/update_ingredient_cookies/:ingredient' => 'recipes#update_ingredient_cookies'
   
   devise_scope :user do
     get "signin", :to => "devise/sessions#new"

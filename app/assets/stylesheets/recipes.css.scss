@@ -10,6 +10,15 @@
 .right_container{
 	width: 400px;
 	float: left;
+	margin: 0 0 0 50px;
+}
+
+#suggested_ingredients_container{
+	margin: 20px 0;
+}
+
+.suggested_ingredient{
+	padding: 0 20px 0 0;
 }
 
 #recipe_description{
@@ -28,4 +37,20 @@ form input {
 
 #recipe_name {
 	margin: 10px 0 40px 0;
+}
+
+#ingredients_list{
+	margin: 10px 0;
+}
+
+#ingredients_list li{
+	list-style: none;
+}
+
+#recipe_search_results{
+	margin: 10px 0;
+}
+
+#recipe_search_results li{
+	list-style: none;
 }

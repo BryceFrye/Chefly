@@ -3,12 +3,17 @@ class Recipe < ActiveRecord::Base
   
   has_many :inclusions, dependent: :destroy
   has_many :ingredients, through: :inclusions
+  belongs_to :user
   
   accepts_nested_attributes_for :ingredients
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 140 }
   validates :instructions, presence: true, length: { maximum: 1000 }
+  
+  def self.nl_to_br(text)
+    text.gsub(/\n/, '<br />')
+  end
   
   def self.populate_ingredient_names(ingredients)
     ingredient_names = {}

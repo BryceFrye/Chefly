@@ -2,12 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+/*	background-color: #ADF7CC;*/
+/*	background-color: #DBFFEA;*/
+	background-color: #EDEDED;
+}
+
 nav{
+	background-color: #ADF7CC;
 	text-align: right;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
+	border-bottom: solid 1px #00D659;
 }
 
 nav a{
-	margin: 0 10px;
+	margin: 0 20px 0 0;
+	position: relative;
+	top: 10px;
+	text-decoration: none;
+	color: #0013A1;
 }
 
 #main_container{

@@ -1,16 +1,44 @@
 <div class="left_container">
-	<h1>Search By Ingredient</h1>
+	<p>Enter the ingredients that you have at home, and Chefly will find recipes that match.</p>
 	<div id="search_ingredients">
-		<input /><button id="add_search_ingredient">Add</button><br>
+		<input id="added_ingredient" /><button id="add_search_ingredient">Add</button><br>
 	</div>
-	<div id="ingredients_list"></div>
-	<button id="search_by_ingredients">Search</button>
-	<div id="recipe_search_results"></div>
+	<div id="ingredients_list">
+		<% if cookies[:ingredients] && !cookies[:ingredients].empty? %>
+			<% ingredients = cookies[:ingredients].split("&") %>
+			<% ingredients.each do |ingredient| %>
+				<% logger.debug "#{ingredient}" %>
+				<script>addIngredientFromCookie("<%= ingredient %>");</script>
+			<% end %>
+		<% else %>
+			<div id="suggested_ingredients_container">
+				<p>We've listed some common ingredients to help get you started!</p>
+				<p>Do you have? 
+				<a id ="select_all" href="#">Select All</a> / 
+				<a id="deselect_all" href="#">Deselect All</a></p>
+				<span class="suggested_ingredient">
+					<input class="checkbox" type="checkbox">
+					<span class="suggested_ingredient_name">Salt</span>
+				</span>
+				<span class="suggested_ingredient">
+					<input class="checkbox" type="checkbox">
+					<span class="suggested_ingredient_name">Pepper</span>
+				</span><br />
+				<span class="suggested_ingredient">
+					<input class="checkbox" type="checkbox">
+					<span class="suggested_ingredient_name">Chicken</span>
+				</span>
+				<span class="suggested_ingredient">
+					<input class="checkbox" type="checkbox">
+					<span class="suggested_ingredient_name">Ground Turkey</span>
+				</span>
+				<button id="add_checked_ingredients">Add Checked Ingredients</button>
+			</div>
+		<% end %>
+	</div>
+	<button id="search_by_ingredients">Find Recipes</button>
 </div>
 
 <div class="right_container">
-	<h1>Recently Added Recipes</h1>
-	<% @recipes.each do |recipe| %>
-		<li><%= link_to recipe.name, recipe_path(recipe) %></li>
-	<% end %>
+	<div id="recipe_search_results"></div>
 </div>

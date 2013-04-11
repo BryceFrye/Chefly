@@ -1,0 +1,13 @@
+<h1>Update This Recipe</h1>
+<%= form_for(@recipe) do |f| %>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %><br />
+	
+	<%= f.label :description %><br />
+	<%= f.text_area :description %><br />
+	
+	<%= f.label :instructions %><br />
+	<%= f.text_area :instructions %><br />
+	
+	<%= f.submit "Save Changes" %>
+<% end %>

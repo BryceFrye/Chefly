@@ -43,4 +43,13 @@ describe Recipe do
     before { @recipe.instructions = "a"*1001 }
     it { should_not be_valid }
   end
+  
+  # describe "when unauthorized user tries to update" do
+  #   before do
+  #     @user = User.new(email: "test@test.com", password: "foobar",
+  #                      password_confirmation: "foobar")
+  #     @recipe = @user.recipes.new(name: "Test", description: "A great meal.",
+  #                                 instructions: "Cook it.")
+  #   end
+  # end
 end
