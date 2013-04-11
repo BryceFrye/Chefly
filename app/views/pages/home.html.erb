@@ -1,1 +1,10 @@
-<p>Hello, World!</p>
+<header id="home_header">Welcome to Chefly!</header>
+<p>Some popular recipes:</p>
+<% @recipes.each do |recipe| %>
+	<li>
+		<%= link_to recipe.name, recipe_path(recipe) %>
+		<% if recipe.user %>
+			by <%= link_to recipe.user.username, user_path(recipe.user) %>
+		<% end %>
+	</li>
+<% end %>

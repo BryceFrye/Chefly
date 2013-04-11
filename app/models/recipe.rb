@@ -11,10 +11,6 @@ class Recipe < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 140 }
   validates :instructions, presence: true, length: { maximum: 1000 }
   
-  def self.nl_to_br(text)
-    text.gsub(/\n/, '<br />')
-  end
-  
   def self.populate_ingredient_names(ingredients)
     ingredient_names = {}
     ingredients.each do |ingredient|

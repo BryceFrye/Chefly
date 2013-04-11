@@ -6,4 +6,12 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
+  
+  def nl_to_br(text)
+    text.gsub(/\n/, '<br />')
+  end
+  
+  def br_to_nl(text)
+    text.gsub(/<br ?\/?>/, "\n")
+  end
 end

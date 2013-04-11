@@ -9,7 +9,7 @@
 		<%= f.fields_for :ingredients do |builder| %>
 		  <%= render 'ingredient_fields', f: builder %>
 		<% end %>
-		<p><%= link_to_add_ingredients "Add Ingredient", f, :ingredients %></p>
+		<p><%= link_to_add_ingredients "Add Ingredient Field", f, :ingredients %></p>
 	</div>
 		
 	<div class="right_container">

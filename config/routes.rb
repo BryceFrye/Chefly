@@ -1,9 +1,10 @@
 Chefly::Application.routes.draw do
-  devise_for :users
-
+  
   root to: 'pages#home'
   
   resources :recipes
+  devise_for :users
+  resources :users
   
   get 'recipes/search/:ingredient' => 'recipes#search'
   get 'recipes/update_ingredient_cookies/:ingredient' => 'recipes#update_ingredient_cookies'

@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  include ApplicationHelper
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :authorized_user, only: [:edit, :update]
   
@@ -8,7 +9,7 @@ class RecipesController < ApplicationController
   end
   
   def create
-    instructions = Recipe.nl_to_br(params[:recipe][:instructions])
+    instructions = nl_to_br(params[:recipe][:instructions])
     @recipe = current_user.recipes.build(name: params[:recipe][:name],
                                          description: params[:recipe][:description],
                                          instructions: instructions)
@@ -33,10 +34,12 @@ class RecipesController < ApplicationController
   
   def edit
     @recipe = Recipe.find(params[:id])
+    @recipe.instructions = br_to_nl(@recipe.instructions)
   end
   
   def update
     @recipe = Recipe.find(params[:id])
+    params[:recipe][:instructions] = nl_to_br(params[:recipe][:instructions])
     if @recipe.update_attributes(params[:recipe])
       redirect_to @recipe
     else
