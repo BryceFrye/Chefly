@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 140 }
-  validates :instructions, presence: true, length: { maximum: 1000 }
+  validates :instructions, presence: true, length: { maximum: 2000 }
   
   def self.populate_ingredient_names(ingredients)
     ingredient_names = {}

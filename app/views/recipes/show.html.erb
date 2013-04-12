@@ -1,18 +1,23 @@
-<header id="recipe_main_header"><%= @recipe.name %></header>
+<header id="show_recipe_main_header"><%= @recipe.name %></header>
 <% if @recipe.user %>
 	submitted by <%= link_to @recipe.user.username, user_path(@recipe.user) %>
 <% end %>
-<header id="recipe_sub_header"><%= @recipe.description %></header>
-<header id="recipe_sub_header2">Ingredients:</header>
-<% @recipe.ingredients.each do |ingredient| %>
-	<li>
-		<% @inclusion = Inclusion.where(recipe_id: @recipe.id, 
-																		ingredient_id: ingredient.id).first %>
-		<%= ingredient.name %> - <%= @inclusion.amount %>
-	</li>
-<% end %>
+<header id="show_recipe_sub_header"><%= @recipe.description %></header>
 <hr />
-<p><%= raw @recipe.instructions %></p>
+<header id="show_recipe_sub_header2">Ingredients:</header>
+<ul id="show_recipe_ingredients_list">
+	<% @recipe.ingredients.each do |ingredient| %>
+		<li>
+			<% @inclusion = Inclusion.where(recipe_id: @recipe.id, 
+																			ingredient_id: ingredient.id).first %>
+			<b><%= ingredient.name %></b> - <%= @inclusion.amount %>
+		</li>
+	<% end %>
+</ul>
+<header id="show_recipe_sub_header2">Instructions:</header>
+<div id="show_recipe_instructions">
+	<p><%= raw @recipe.instructions %></p>
+</div>
 <% if (current_user && @recipe.user_id == current_user.id) || current_user.admin %>
 	<%= link_to "Edit Recipe", edit_recipe_path %>
 <% end %>
