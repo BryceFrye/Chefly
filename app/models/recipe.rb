@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   
   has_many :inclusions, dependent: :destroy
   has_many :ingredients, through: :inclusions
+  has_many :likes, dependent: :destroy
   belongs_to :user
   
   accepts_nested_attributes_for :ingredients
@@ -20,12 +21,12 @@ class Recipe < ActiveRecord::Base
   end
   
   def self.check_for_ingredient(ingredients)
-    ingredients_in_bd = []
+    ingredients_in_db = []
     ingredients.each do |ingredient, value|
       ingredient_to_add = Ingredient.find_by_name(ingredient)
-      ingredients_in_bd.push(ingredient_to_add) if ingredient_to_add
+      ingredients_in_db.push(ingredient_to_add) if ingredient_to_add
     end
-    ingredients_in_bd
+    ingredients_in_db
   end
   
   def self.get_possible_recipes(ingredients)

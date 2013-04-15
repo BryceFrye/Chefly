@@ -5,6 +5,7 @@ Chefly::Application.routes.draw do
   resources :recipes
   devise_for :users
   resources :users
+  resources :likes
   
   get 'recipes/search/:ingredient' => 'recipes#search'
   get 'recipes/update_ingredient_cookies/:ingredient' => 'recipes#update_ingredient_cookies'

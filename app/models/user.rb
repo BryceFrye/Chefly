@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   has_many :recipes
+  has_many :likes, dependent: :destroy
   
   before_save { |user| user.email = email.downcase }
   
